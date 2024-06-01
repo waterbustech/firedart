@@ -65,6 +65,10 @@ class FirebaseAuth {
   Future<void> signInWithCustomToken(String token) =>
       _authGateway.signInWithCustomToken(token);
 
+  Future<User> signInWithOAuth(
+          String providerId, String idToken, String accessToken) =>
+      _authGateway.signInWithOAuth(providerId, idToken, accessToken);
+
   Future<User> signInAnonymously() => _authGateway.signInAnonymously();
 
   void signOut() => tokenProvider.signOut();

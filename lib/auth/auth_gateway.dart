@@ -23,6 +23,21 @@ class AuthGateway {
   Future<void> signInWithCustomToken(String token) => _auth(
       'signInWithCustomToken', {'token': token, 'returnSecureToken': 'true'});
 
+  Future<User> signInWithOAuth(
+      String providerId, String idToken, String accessToken) async {
+    final body = {
+      'postBody':
+          'access_token=$accessToken&id_token=$idToken&providerId=$providerId',
+      'requestUri': 'http://localhost',
+      'returnSecureToken': 'true',
+    };
+
+    final map = await _post('signInWithIdp', body);
+
+    tokenProvider.setToken(map);
+    return User.fromMap(map);
+  }
+
   Future<User> signInAnonymously() => _auth('signUp', {}).then(User.fromMap);
 
   Future<void> resetPassword(String email) => _post('sendOobCode', {
