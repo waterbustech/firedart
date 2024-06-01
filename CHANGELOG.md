@@ -1,3 +1,6 @@
+## 0.9.8+1
+- Add sign in with Oauth
+
 ## 0.9.8
 - Add retry functionality to Firestore streams (fum36205)
 - Regenerate RPC stubs (fum36205)
